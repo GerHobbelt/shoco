@@ -18,7 +18,14 @@ static void print(char *in, double ratio) {
   printf("'%s' (%d%%)\n", in, percent(ratio));
 }
 
-int main(int argc, char ** argv) {
+
+
+#if defined(BUILD_MONOLITHIC)
+#define main(cnt, arr)      shoco_test_input_main(cnt, arr)
+#endif
+
+int main(int argc, const char** argv)
+{
   char buffer[BUFFER_SIZE] = { 0 };
   char comp[BUFFER_SIZE] = { 0 };
   char out[BUFFER_SIZE] = { 0 };

@@ -8,7 +8,14 @@
 static const char LARGE_STR[] = "This is a large string that won't possibly fit into a small buffer";
 static const char NON_ASCII_STR[] = "Übergrößenträger";
 
-int main() {
+
+
+#if defined(BUILD_MONOLITHIC)
+#define main(void)      shoco_tests_main(void)
+#endif
+
+int main(void)
+{
   char buf_1[1];
   char buf_2[2];
   char buf_4[4];

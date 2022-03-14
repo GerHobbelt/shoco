@@ -1,6 +1,18 @@
+#if HAVE_CONFIG_H
+# include <config.h>
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#ifdef HAVE_ALLOCA_H
+#	include <alloca.h>
+#elif defined(_MSC_VER)
+#	include <malloc.h>
+#ifndef alloca
+#define alloca(size)    _alloca(size)
+#endif
+#endif
 
 #include "shoco.h"
 
@@ -14,7 +26,14 @@ typedef enum {
 
 #define MAX_STACK_ALLOCATION_SIZE 65536
 
-int main(int argc, char **argv) {
+
+
+#if defined(BUILD_MONOLITHIC)
+#define main(cnt, arr)      shoco_bin_main(cnt, arr)
+#endif
+
+int main(int argc, const char** argv)
+{
   Job job; 
   unsigned long in_size;
   char *in_buffer;
