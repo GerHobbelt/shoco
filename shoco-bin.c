@@ -54,8 +54,8 @@ int main(int argc, const char** argv)
     puts(USAGE);
     return 1;
   }
-  char *infile = argv[2];
-  char *outfile = argv[3];
+  const char *infile = argv[2];
+  const char *outfile = argv[3];
 
   fin = fopen (infile, "rb" );
   if (fin == NULL) {
